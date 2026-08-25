@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Hub — 50+ AI Tools</title>
+<style>
+:root{--bg:#070914;--panel:#0e1220;--line:#242b40;--txt:#f7f8ff;--muted:#99a3b9;--a:#775cff;--b:#28d7c5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 0,rgba(119,92,255,.16),transparent 28%),radial-gradient(circle at 90% 15%,rgba(40,215,197,.08),transparent 24%)}
+header{height:70px;position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(7,9,20,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.logo{font-size:25px;font-weight:900}.logo span{color:var(--a)}nav a{color:#c6ccdb;text-decoration:none;margin-left:18px;font-size:13px}
+.hero{text-align:center;padding:76px 20px 52px}.pill{display:inline-block;border:1px solid #39365c;background:#121126;color:#bdb3ff;padding:8px 13px;border-radius:30px;font-size:11px;font-weight:800}
+h1{font-size:clamp(44px,8vw,84px);line-height:.95;letter-spacing:-4px;margin:20px 0}h1 span{background:linear-gradient(90deg,#a58fff,#48e1d2);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:720px;margin:auto;color:var(--muted);font-size:18px;line-height:1.6}.buttons{margin:28px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{border:0;border-radius:10px;padding:13px 20px;background:linear-gradient(90deg,var(--a),#5d8cff);color:white;font-weight:800;cursor:pointer}.ghost{background:#101522;border:1px solid var(--line)}
+.search{max-width:760px;margin:18px auto 0;display:flex}.search input{width:100%;padding:15px 18px;background:#0d1220;border:1px solid var(--line);border-radius:12px;color:white;outline:none}
+section{padding:48px 5%}.title{text-align:center;font-size:33px;margin:0 0 9px}.sub{text-align:center;color:var(--muted);max-width:700px;margin:0 auto 30px}
+.category{max-width:1250px;margin:34px auto}.category h2{font-size:21px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:13px}
+.card{background:linear-gradient(145deg,#101626,#0b0f19);border:1px solid var(--line);border-radius:14px;padding:18px;min-height:150px;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#5651a1}.icon{font-size:27px}.card h3{margin:9px 0 6px;font-size:16px}.card p{color:#909bb2;font-size:13px;line-height:1.45;margin:0}.tag{display:inline-block;margin-top:10px;padding:4px 7px;border-radius:5px;font-size:10px;font-weight:800;background:#183326;color:#78dfa1}.pro{background:#302617;color:#ffd077}.hidden{display:none}
+.banner{max-width:1250px;margin:auto;padding:27px;border:1px solid #2d3953;border-radius:17px;background:linear-gradient(100deg,#11162a,#0d1519);display:flex;justify-content:space-between;gap:25px;align-items:center}.banner p{color:var(--muted);line-height:1.5}.stats{display:flex;gap:22px}.stats b{font-size:25px}.stats small{display:block;color:#7e899f}
+footer{text-align:center;color:#727d92;border-top:1px solid var(--line);padding:28px;font-size:13px}
+@media(max-width:700px){nav{display:none}.hero{padding-top:55px}h1{letter-spacing:-2px}.banner{display:block}.stats{margin-top:18px}}
+</style>
+</head>
+<body>
+<header><div class="logo">AI <span>Hub</span></div><nav><a href="#tools">TOOLS</a><a href="#courses">COURSES</a><a href="#plans">PLANS</a></nav></header>
+<div class="hero"><span class="pill">✦ 50+ TOOLS • 60% FREE • SAFETY-AWARE</span><h1>Everything AI.<br><span>One Powerful Hub.</span></h1><p>Chat, write, code, study, create images and videos, analyze markets, improve productivity and learn cybersecurity from one workspace.</p><div class="buttons"><a class="btn" href="#tools">Explore Tools →</a><a class="btn ghost" href="#courses">Courses</a></div><div class="search"><input id="search" placeholder="Search 50+ tools..." oninput="filterTools()"></div></div>
+
+
+<section id="free-creator">
+<div class="banner" style="margin-bottom:28px">
+  <div>
+    <h2>🎨 AI Free Creator — Photos & Videos</h2>
+    <p>Create images and short-video concepts from text. The UI is free to use; real generation is connected through a backend/API when deployed.</p>
+  </div>
+  <button class="btn" onclick="document.getElementById('creator').scrollIntoView({behavior:'smooth'})">Open Creator →</button>
+</div>
+<div id="creator" class="card" style="max-width:900px;margin:auto">
+  <h2>Free Creator</h2>
+  <select id="creatorType" style="width:100%;padding:13px;margin:8px 0 12px;background:#0b1020;color:white;border:1px solid var(--line);border-radius:10px">
+    <option value="image">🖼️ Generate Photo / Image</option>
+    <option value="video">🎬 Generate Short Video</option>
+  </select>
+  <textarea id="creatorPrompt" rows="5" placeholder="Describe what you want to create..." style="width:100%;padding:13px;background:#0b1020;color:white;border:1px solid var(--line);border-radius:10px"></textarea>
+  <div style="margin-top:12px"><button class="btn" onclick="creatorDemo()">Generate Free</button></div>
+  <div id="creatorOutput" style="margin-top:15px;padding:18px;border:1px dashed #39425c;border-radius:10px;color:var(--muted)">Your generated media will appear here after the image/video API is connected.</div>
+  <p style="font-size:12px;color:#758198">Free generation depends on the provider's free quota/limits. No secret API key should be placed in this HTML file.</p>
+</div>
+</section>
+
+<section id="tools"><h2 class="title">All Tools</h2><p class="sub">Every major tool is visible on the homepage. Free and Pro features are clearly marked.</p>
+<div id="toolArea">
+
+<div class="category"><h2>🤖 AI & Writing</h2><div class="grid">
+<div class="card"><div class="icon">💬</div><h3>AI Command Chat</h3><span class="tag ">FREE</span><p>General-purpose AI assistant with safety-aware answers.</p></div>
+<div class="card"><div class="icon">✍️</div><h3>AI Writer</h3><span class="tag ">FREE</span><p>Articles, posts and professional writing.</p></div>
+<div class="card"><div class="icon">📝</div><h3>Blog Generator</h3><span class="tag ">FREE</span><p>Create structured blog drafts.</p></div>
+<div class="card"><div class="icon">📧</div><h3>Email Writer</h3><span class="tag ">FREE</span><p>Professional emails in seconds.</p></div>
+<div class="card"><div class="icon">🔄</div><h3>Paraphraser</h3><span class="tag ">FREE</span><p>Rewrite text with different tones.</p></div>
+<div class="card"><div class="icon">✓</div><h3>Grammar Checker</h3><span class="tag ">FREE</span><p>Improve grammar and clarity.</p></div>
+<div class="card"><div class="icon">💡</div><h3>Idea Generator</h3><span class="tag ">FREE</span><p>Generate ideas and creative directions.</p></div>
+<div class="card"><div class="icon">🌐</div><h3>Translator</h3><span class="tag ">FREE</span><p>Translate between major languages.</p></div>
+</div></div>
+
+<div class="category"><h2>📚 Study & Documents</h2><div class="grid">
+<div class="card"><div class="icon">📄</div><h3>Summarizer</h3><span class="tag ">FREE</span><p>Turn long text into key points.</p></div>
+<div class="card"><div class="icon">📚</div><h3>PDF Q&A</h3><span class="tag ">FREE</span><p>Ask questions about documents.</p></div>
+<div class="card"><div class="icon">🗒️</div><h3>Notes Generator</h3><span class="tag ">FREE</span><p>Turn material into study notes.</p></div>
+<div class="card"><div class="icon">❓</div><h3>Quiz Generator</h3><span class="tag ">FREE</span><p>Create quizzes from text.</p></div>
+<div class="card"><div class="icon">🃏</div><h3>Flashcard Maker</h3><span class="tag ">FREE</span><p>Make revision flashcards.</p></div>
+<div class="card"><div class="icon">🎓</div><h3>Essay Helper</h3><span class="tag ">FREE</span><p>Plan and improve academic writing.</p></div>
+<div class="card"><div class="icon">🧾</div><h3>Citation Helper</h3><span class="tag ">FREE</span><p>Format and organize references.</p></div>
+</div></div>
+
+<div class="category"><h2>💻 Coding</h2><div class="grid">
+<div class="card"><div class="icon">⌨️</div><h3>Code Generator</h3><span class="tag ">FREE</span><p>Generate code from requirements.</p></div>
+<div class="card"><div class="icon">🔍</div><h3>Code Explainer</h3><span class="tag ">FREE</span><p>Understand unfamiliar code.</p></div>
+<div class="card"><div class="icon">🐞</div><h3>Debug Assistant</h3><span class="tag ">FREE</span><p>Find and explain coding issues.</p></div>
+<div class="card"><div class="icon">🗃️</div><h3>SQL Generator</h3><span class="tag ">FREE</span><p>Build SQL from plain English.</p></div>
+<div class="card"><div class="icon">.*</div><h3>Regex Generator</h3><span class="tag ">FREE</span><p>Create and explain regular expressions.</p></div>
+<div class="card"><div class="icon">🧪</div><h3>Test Case Generator</h3><span class="tag ">FREE</span><p>Create software test cases.</p></div>
+</div></div>
+
+<div class="category"><h2>🖼️ Photos & Images</h2><div class="grid">
+<div class="card"><div class="icon">🎨</div><h3>AI Free Creator</h3><span class="tag">FREE</span><p>Create photo/image requests and short-video concepts from prompts.</p></div>
+<div class="card"><div class="icon">🎨</div><h3>AI Image Generator</h3><span class="tag pro">PRO</span><p>Create images from text prompts.</p></div>
+<div class="card"><div class="icon">✨</div><h3>Photo Enhancer</h3><span class="tag ">FREE</span><p>Improve clarity and quality.</p></div>
+<div class="card"><div class="icon">✂️</div><h3>Background Remover</h3><span class="tag ">FREE</span><p>Remove image backgrounds.</p></div>
+<div class="card"><div class="icon">🧑</div><h3>Portrait Editor</h3><span class="tag pro">PRO</span><p>Creative portrait editing.</p></div>
+<div class="card"><div class="icon">🔎</div><h3>Image Upscaler</h3><span class="tag pro">PRO</span><p>Upscale images for cleaner output.</p></div>
+<div class="card"><div class="icon">📝</div><h3>Image Captioner</h3><span class="tag ">FREE</span><p>Generate useful image captions.</p></div>
+<div class="card"><div class="icon">🖼️</div><h3>Thumbnail Maker</h3><span class="tag ">FREE</span><p>Create thumbnails for social/video.</p></div>
+<div class="card"><div class="icon">🔁</div><h3>Image-to-Image</h3><span class="tag pro">PRO</span><p>Create variations from an image.</p></div>
+</div></div>
+
+<div class="category"><h2>🎬 Video & Audio</h2><div class="grid">
+<div class="card"><div class="icon">🎬</div><h3>AI Video Generator</h3><span class="tag pro">PRO</span><p>Create video concepts from prompts.</p></div>
+<div class="card"><div class="icon">✂️</div><h3>AI Video Editor</h3><span class="tag pro">PRO</span><p>AI-assisted editing workflow.</p></div>
+<div class="card"><div class="icon">📜</div><h3>Video Script Generator</h3><span class="tag ">FREE</span><p>Scripts for videos and reels.</p></div>
+<div class="card"><div class="icon">🎞️</div><h3>Video Summarizer</h3><span class="tag ">FREE</span><p>Extract key points from video content.</p></div>
+<div class="card"><div class="icon">🎙️</div><h3>Text-to-Speech</h3><span class="tag pro">PRO</span><p>Convert text into natural speech.</p></div>
+<div class="card"><div class="icon">🎧</div><h3>Speech-to-Text</h3><span class="tag ">FREE</span><p>Transcribe voice recordings.</p></div>
+<div class="card"><div class="icon">🎵</div><h3>Audio Cleaner</h3><span class="tag pro">PRO</span><p>Improve noisy recordings.</p></div>
+</div></div>
+
+<div class="category"><h2>📈 Business & Productivity</h2><div class="grid">
+<div class="card"><div class="icon">💼</div><h3>Business Plan</h3><span class="tag ">FREE</span><p>Generate structured business plans.</p></div>
+<div class="card"><div class="icon">🛍️</div><h3>Product Description</h3><span class="tag ">FREE</span><p>Write conversion-focused product copy.</p></div>
+<div class="card"><div class="icon">📣</div><h3>Ad Copy</h3><span class="tag ">FREE</span><p>Create advertising variations.</p></div>
+<div class="card"><div class="icon">🔎</div><h3>SEO Meta Generator</h3><span class="tag ">FREE</span><p>Generate SEO titles and descriptions.</p></div>
+<div class="card"><div class="icon">📄</div><h3>CV / Resume Builder</h3><span class="tag ">FREE</span><p>Create polished CV content.</p></div>
+<div class="card"><div class="icon">✉️</div><h3>Cover Letter Builder</h3><span class="tag ">FREE</span><p>Create tailored cover letters.</p></div>
+<div class="card"><div class="icon">🗓️</div><h3>Task Planner</h3><span class="tag ">FREE</span><p>Turn goals into actionable tasks.</p></div>
+<div class="card"><div class="icon">🤝</div><h3>Meeting Summarizer</h3><span class="tag ">FREE</span><p>Convert meeting notes into actions.</p></div>
+</div></div>
+
+<div class="category"><h2>📊 Trading & Market Analysis</h2><div class="grid">
+<div class="card"><div class="icon">📈</div><h3>Market Trend Analyzer</h3><span class="tag ">FREE</span><p>Analyze provided market data and trends.</p></div>
+<div class="card"><div class="icon">🕯️</div><h3>Candlestick Explainer</h3><span class="tag ">FREE</span><p>Explain common candle patterns.</p></div>
+<div class="card"><div class="icon">📉</div><h3>Support & Resistance</h3><span class="tag ">FREE</span><p>Analyze supplied price levels.</p></div>
+<div class="card"><div class="icon">📐</div><h3>Risk/Reward Calculator</h3><span class="tag ">FREE</span><p>Calculate trade risk/reward.</p></div>
+<div class="card"><div class="icon">💰</div><h3>Position Size Calculator</h3><span class="tag ">FREE</span><p>Estimate position size from risk settings.</p></div>
+<div class="card"><div class="icon">🛑</div><h3>Stop-Loss Planner</h3><span class="tag ">FREE</span><p>Plan risk limits from your inputs.</p></div>
+<div class="card"><div class="icon">📋</div><h3>Trading Journal Analyzer</h3><span class="tag ">FREE</span><p>Review your trading journal.</p></div>
+<div class="card"><div class="icon">🧠</div><h3>Strategy Builder</h3><span class="tag ">FREE</span><p>Structure rule-based strategies.</p></div>
+<div class="card"><div class="icon">📰</div><h3>News/Sentiment Summary</h3><span class="tag ">FREE</span><p>Summarize supplied market news.</p></div>
+<div class="card"><div class="icon">💼</div><h3>Portfolio Analyzer</h3><span class="tag ">FREE</span><p>Analyze portfolio allocation.</p></div>
+<div class="card"><div class="icon">₿</div><h3>Crypto Analyzer</h3><span class="tag pro">PRO</span><p>Analyze crypto market information you provide.</p></div>
+<div class="card"><div class="icon">💱</div><h3>Forex Pair Analyzer</h3><span class="tag pro">PRO</span><p>Analyze forex data you provide.</p></div>
+<div class="card"><div class="icon">🧪</div><h3>Backtesting Assistant</h3><span class="tag pro">PRO</span><p>Design and interpret historical tests.</p></div>
+</div></div>
+
+<div class="category"><h2>🛡️ Cybersecurity, Privacy & Safety</h2><div class="grid">
+<div class="card"><div class="icon">🔐</div><h3>Security Learning Assistant</h3><span class="tag ">FREE</span><p>Defensive cybersecurity and safe testing.</p></div>
+<div class="card"><div class="icon">🌐</div><h3>Dark Web Basics</h3><span class="tag ">FREE</span><p>Educational dark-web concepts and risks.</p></div>
+<div class="card"><div class="icon">🚨</div><h3>Scam Checker</h3><span class="tag ">FREE</span><p>Identify common scam warning signs.</p></div>
+<div class="card"><div class="icon">🎣</div><h3>Phishing Awareness</h3><span class="tag ">FREE</span><p>Learn to spot and prevent phishing.</p></div>
+<div class="card"><div class="icon">🔎</div><h3>OSINT Learning</h3><span class="tag pro">PRO</span><p>Learn legal, privacy-respecting research methods.</p></div>
+<div class="card"><div class="icon">🧰</div><h3>Web Security Labs</h3><span class="tag pro">PRO</span><p>Practice defensive web security in safe labs.</p></div>
+</div></div>
+</div>
+</section>
+
+<section id="courses"><div class="banner"><div><h2>📚 Premium Courses</h2><p>Dark Web & Online Privacy, Ethical Hacking, OSINT, Payment Fraud Awareness, Bug Bounty, Digital Forensics and more. Courses focus on legal, defensive and educational skills.</p></div><div class="stats"><div><b>12+</b><small>Courses</small></div><div><b>100+</b><small>Lessons</small></div><div><b>✓</b><small>Quizzes</small></div></div></div></section>
+
+<section id="plans"><h2 class="title">Free + Pro</h2><p class="sub">60% free access. Premium creative, advanced and course features can be enabled later.</p><div class="grid" style="max-width:900px;margin:auto"><div class="card"><h3>FREE</h3><h2>$0</h2><p>Core AI tools • Daily credits • Study • Writing • Coding • Basic trading analysis</p><button class="btn">Start Free</button></div><div class="card"><h3>PRO ⭐</h3><h2>$9.99/mo</h2><p>More credits • Premium image/video/voice • Advanced tools • Courses</p><button class="btn" onclick="alert('Payment integration is pending.')">Coming Soon</button></div></div></section>
+<footer>© 2026 AI Hub • Payment integration pending • Safety-aware AI</footer>
+
+<script>
+function filterTools(){
+ const q=document.getElementById('search').value.toLowerCase();
+ document.querySelectorAll('.category').forEach(cat=>{
+   let count=0;
+   cat.querySelectorAll('.card').forEach(c=>{let ok=c.innerText.toLowerCase().includes(q);c.classList.toggle('hidden',!ok);if(ok)count++});
+   cat.style.display=count?'block':'none';
+ });
+}
+
+function creatorDemo(){
+ const type=document.getElementById('creatorType').value;
+ const prompt=document.getElementById('creatorPrompt').value.trim();
+ const out=document.getElementById('creatorOutput');
+ if(!prompt){out.textContent='Please describe your photo or video first.';return;}
+ out.innerHTML=(type==='image'
+   ? '🖼️ Image request ready: <b>'+escapeHtml(prompt)+'</b><br><small>Connect an image-generation backend to produce the actual image.</small>'
+   : '🎬 Video request ready: <b>'+escapeHtml(prompt)+'</b><br><small>Connect a video-generation backend to produce the actual video.</small>');
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+
+</script>
+<script>
+async function apiJSON(url, body){
+  const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const d=await r.json().catch(()=>({error:'Invalid server response'}));
+  if(!r.ok) throw new Error(d.error||'Request failed');
+  return d;
+}
+async function aiHubChat(message){
+  return apiJSON('/api/chat',{message});
+}
+async function aiHubImage(prompt){
+  return apiJSON('/api/image',{prompt});
+}
+async function aiHubVideo(prompt){
+  return apiJSON('/api/video',{prompt});
+}
+</script>
+</body></html>
