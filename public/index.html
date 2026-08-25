@@ -156,15 +156,38 @@ function filterTools(){
  });
 }
 
-function creatorDemo(){
- const type=document.getElementById('creatorType').value;
- const prompt=document.getElementById('creatorPrompt').value.trim();
- const out=document.getElementById('creatorOutput');
- if(!prompt){out.textContent='Please describe your photo or video first.';return;}
- out.innerHTML=(type==='image'
-   ? '🖼️ Image request ready: <b>'+escapeHtml(prompt)+'</b><br><small>Connect an image-generation backend to produce the actual image.</small>'
-   : '🎬 Video request ready: <b>'+escapeHtml(prompt)+'</b><br><small>Connect a video-generation backend to produce the actual video.</small>');
-}
+async function creatorDemo(){
+  const type = document.getElementById('creatorType').value;
+  const prompt = document.getElementById('creatorPrompt').value.trim();
+  const out = document.getElementById('creatorOutput');
+
+  if (!prompt) {
+    out.textContent = 'Please describe your photo or video first.';
+    return;
+  }
+
+  if (type !== 'image') {
+    out.textContent = 'Video generation is not connected yet.';
+    return;
+  }
+
+  out.innerHTML = '⏳ Generating image...';
+
+  try {
+    const data = await aiHubImage(prompt);
+
+    if (!data.image) {
+      throw new Error('No image was returned.');
+    }
+
+    out.innerHTML =
+      '<img src="' + data.image + '" style="max-width:100%;border-radius:12px;">' +
+      '<br><br>' +
+      '<a href="' + data.image + '" download="ai-hub-image.png" class="btn">Download Image</a>';
+
+  } catch (error) {
+    out.textContent = '❌ ' + error.message;
+  }
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
 
 </script>
