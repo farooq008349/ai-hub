@@ -153,19 +153,33 @@ function filterTools(){
    let count=0;
    cat.querySelectorAll('.card').forEach(c=>{let ok=c.innerText.toLowerCase().includes(q);c.classList.toggle('hidden',!ok);if(ok)count++});
    cat.style.display=count?'block':'none';
- });
-}
+ }
 
-async function creatorDemo(){
-  const type = document.getElementById('creatorType').value;
-  const prompt = document.getElementById('creatorPrompt').value.trim();
-  const out = document.getElementById('creatorOutput');
+  out.innerHTML='⏳ Generating image...';
 
-  if (!prompt) {
-    out.textContent = 'Please describe your photo or video first.';
-    return;
+  try{
+    const data=await aiHubImage(prompt);
+
+    if(!data.image){
+      throw new Error('No image was returned.');
+    }
+
+    out.innerHTML=
+      '<img src="'+data.image+'" style="max-width:100%;border-radius:12px;">' +
+      '<br><br>' +
+      '<a href="'+data.image+'" download="ai-hub-image.png" class="btn">Download Image</a>';
+
+  }catch(error){
+    out.textContent='❌ '+error.message;
   }
-
+}
+</script>
+</body>
+</html>
+Haan بھائی 👍 میں مکمل صحیح code دے رہا ہوں۔ تم اسے copy-paste کر دو۔
+تمہارے موجودہ code میں <script> سے لے کر آخری </script> تک والا پورا حصہ delete کرو، یعنی تقریباً line 156 سے آخر تک۔ پھر نیچے والا پورا code وہاں paste کرو۔
+یہ پورا block ایک ساتھ copy کرنا ہے:
+HTML
   if (type !== 'image') {
     out.textContent = 'Video generation is not connected yet.';
     return;
