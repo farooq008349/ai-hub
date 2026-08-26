@@ -48,8 +48,7 @@ app.post('/api/chat', async (req,res)=>{
 app.post('/api/image', async (req,res)=>{
   const missing=requireClient(res); if(missing) return;
   const prompt=String(req.body?.prompt||'').trim();
-  if(!prompt) return res.status(400).json({error:'Prompt is required.'});
-  try{
+  if(!prompt) return res.status(500).json({error:e?.message || 'Image generation failed.'});
     const r=await client.images.generate({
       model: process.env.IMAGE_MODEL || 'gpt-image-2',
       prompt,
